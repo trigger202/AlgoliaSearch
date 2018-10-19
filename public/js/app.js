@@ -57209,7 +57209,7 @@ var Search = function (_Component) {
                 { className: "Search" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "h2",
-                    null,
+                    { className: "text-center" },
                     "Search"
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -57217,7 +57217,7 @@ var Search = function (_Component) {
                     { className: "input-group" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
                         className: "form-control",
-                        name: "actor",
+                        name: "actor", placeholder: "Search here",
                         onChange: this.handleChange
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -57226,7 +57226,7 @@ var Search = function (_Component) {
                             className: "btn btn-success ml-2",
                             onClick: this.handleSearch.bind(this)
                         },
-                        "Search"
+                        "Click to Search"
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { className: "mt-5" }),
@@ -57307,7 +57307,7 @@ var Search = function (_Component) {
             var _this3 = this;
 
             e.preventDefault();
-
+            if (this.state.search === '') return;
             fetch("/search?actor=" + this.state.search).then(function (res) {
                 return res.json();
             }).then(function (actors) {

@@ -28,6 +28,7 @@
      */
     public function searchPerson(Request $request, AlgoliaSearch $search)
     {
+
       return $search->index('people_index')->get($request->get('actor'))['hits'];
     }
   }

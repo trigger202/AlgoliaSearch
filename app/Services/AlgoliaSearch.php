@@ -30,8 +30,6 @@
 
     public function get($query, $page = 0)
     {
-      return $this->index->search($query, [
-        'page' => $page
-      ]);
+      return $this->index->search($query);
     }
   }

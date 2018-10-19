@@ -19,18 +19,18 @@ class Search extends Component {
     render() {
         return (
             <div className="Search">
-                <h2>Search</h2>
+                <h2 className="text-center">Search</h2>
                 <div className="input-group">
                     <input
                         className="form-control"
-                        name="actor"
+                        name="actor" placeholder="Search here"
                         onChange={this.handleChange}
                     />
                     <button
                         className="btn btn-success ml-2"
                         onClick={this.handleSearch.bind(this)}
                     >
-                        Search
+                        Click to Search
                     </button>
                 </div>
                 <div className="mt-5" />
@@ -69,7 +69,8 @@ class Search extends Component {
 
     handleSearch(e) {
         e.preventDefault();
-
+        if(this.state.search === '')
+            return;
         fetch("/search?actor=" + this.state.search)
             .then(res => res.json())
             .then(actors => {
