@@ -10,9 +10,8 @@ class Search extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    hasActors() {
-        if (this.state.actors.length)
-            return <p>{this.state.actors.length} matches found</p>;
+    showResultInfo({ actors } = this.state) {
+        if (actors.length) return <p>{actors.length} matches found</p>;
         return "No matches found";
     }
 
@@ -34,13 +33,13 @@ class Search extends Component {
                     </button>
                 </div>
                 <div className="mt-5" />
-                <div className="info">{this.hasActors()}</div>
+                <div className="info">{this.showResultInfo()}</div>
                 <div className="form-group">
                     <table className="table table-bordered">
                         <thead>
                             <tr>
                                 <th>First Name</th>
-                                <th>lastName Name</th>
+                                <th>last Name</th>
                                 <th>Email</th>
                                 <th>Rating</th>
                             </tr>
@@ -48,7 +47,13 @@ class Search extends Component {
                         <tbody>
                             {this.state.actors.map(actor => (
                                 <tr key={actor.id}>
-                                    <td>{actor.first_name}</td>
+                                    <td
+                                        dangerouslySetInnerHTML={this.createMarkup(
+                                            actor._highlightResult.first_name
+                                                .value
+                                        )}
+                                    />
+
                                     <td>{actor.last_name}</td>
                                     <td>{actor.email}</td>
                                     <td>{actor.rating}</td>
@@ -73,6 +78,10 @@ class Search extends Component {
                     actors: result
                 });
             });
+    }
+
+    createMarkup(val) {
+        return { __html: val };
     }
 
     handleChange(e) {

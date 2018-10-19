@@ -57185,12 +57185,15 @@ var Search = function (_Component) {
     }
 
     _createClass(Search, [{
-        key: "hasActors",
-        value: function hasActors() {
-            if (this.state.actors.length) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        key: "showResultInfo",
+        value: function showResultInfo() {
+            var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.state,
+                actors = _ref.actors;
+
+            if (actors.length) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "p",
                 null,
-                this.state.actors.length,
+                actors.length,
                 " matches found"
             );
             return "No matches found";
@@ -57198,6 +57201,8 @@ var Search = function (_Component) {
     }, {
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "Search" },
@@ -57227,7 +57232,7 @@ var Search = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "info" },
-                    this.hasActors()
+                    this.showResultInfo()
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
@@ -57249,7 +57254,7 @@ var Search = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "th",
                                     null,
-                                    "lastName Name"
+                                    "last Name"
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "th",
@@ -57270,11 +57275,9 @@ var Search = function (_Component) {
                                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     "tr",
                                     { key: actor.id },
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        "td",
-                                        null,
-                                        actor.first_name
-                                    ),
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("td", {
+                                        dangerouslySetInnerHTML: _this2.createMarkup(actor._highlightResult.first_name.value)
+                                    }),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         "td",
                                         null,
@@ -57300,7 +57303,7 @@ var Search = function (_Component) {
     }, {
         key: "handleSearch",
         value: function handleSearch(e) {
-            var _this2 = this;
+            var _this3 = this;
 
             e.preventDefault();
 
@@ -57311,10 +57314,15 @@ var Search = function (_Component) {
                     return actor;
                 });
 
-                _this2.setState({
+                _this3.setState({
                     actors: result
                 });
             });
+        }
+    }, {
+        key: "createMarkup",
+        value: function createMarkup(val) {
+            return { __html: val };
         }
     }, {
         key: "handleChange",
