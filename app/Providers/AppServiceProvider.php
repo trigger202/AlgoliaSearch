@@ -28,7 +28,7 @@
     {
 
       $this->app->bind(AlgoliaSearch::class, function () {
-        return new AlgoliaSearch(new Client(config('scout.algolia.id'), config('scout.algolia.secret')));
+        return new AlgoliaSearch(new Client(config('scout.algolia.id'), config('scout.algolia.search_secret')));
       });
     }
   }
