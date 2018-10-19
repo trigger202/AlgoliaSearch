@@ -57178,7 +57178,8 @@ var Search = function (_Component) {
 
         _this.state = {
             search: "",
-            actors: []
+            actors: [],
+            page: 0
         };
         _this.handleChange = _this.handleChange.bind(_this);
         return _this;
@@ -57313,7 +57314,6 @@ var Search = function (_Component) {
                 var result = actors.map(function (actor) {
                     return actor;
                 });
-
                 _this3.setState({
                     actors: result
                 });

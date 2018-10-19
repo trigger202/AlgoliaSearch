@@ -5,7 +5,8 @@ class Search extends Component {
         super(props);
         this.state = {
             search: "",
-            actors: []
+            actors: [],
+            page: 0
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -73,7 +74,6 @@ class Search extends Component {
             .then(res => res.json())
             .then(actors => {
                 const result = actors.map(actor => actor);
-
                 this.setState({
                     actors: result
                 });

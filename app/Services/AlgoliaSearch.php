@@ -28,8 +28,10 @@
       return $this;
     }
 
-    public function get($query)
+    public function get($query, $page = 0)
     {
-      return $this->index->search($query);
+      return $this->index->search($query, [
+        'page' => $page
+      ]);
     }
   }

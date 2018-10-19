@@ -6,6 +6,6 @@
   {
     public function index($index);
 
-    public function get($query);
+    public function get($query, $page = 0);
 
   }
